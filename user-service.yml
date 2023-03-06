@@ -7,7 +7,7 @@ spring:
     password: admin
 
 token:
-  key: my_token_secret_key
+  key: "{cipher}d41b9d2cf77dd059b23c47bf6262dd9a270b9b98804a8d0d1f5aa85055f074a3ca4d2393837471c2983d720e6ab92669"
 
 default:
   message: user-service 에서 global profiles 에서 사용할 설정 정보들
