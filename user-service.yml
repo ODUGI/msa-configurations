@@ -1,13 +1,77 @@
-# user-service.yml
+server:
+  port: 64412
+
 spring:
+  application:
+    name: user-service
+
+  redis:
+    host: localhost
+    port: 6379
+
   datasource:
-    driver: com.h2.Driver
-    url: dbUrl
-    username: admin
-    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
-token:
-  key: "{cipher}d41b9d2cf77dd059b23c47bf6262dd9a270b9b98804a8d0d1f5aa85055f074a3ca4d2393837471c2983d720e6ab92669"
+    # local 환경
+    url: "{cipher}326beb74ce647922beb410ff2b57c774134f035348a4928377784b253af9704e816ce2c755ff15896edcaf92c6f0241b3285fa1b937bffad0024473e4d264e61d517f1bf2e66d5af5c931bb41a4edd7bd8f6b6629d47455c56e5e1bbdb49f66ff968256341fcb6c64087fc190fd27d78"
+    username: "{cipher}ccc8f4f8425e5a878274557d4c0be8639dff83c961516453fef7a663f23f0c7a"
+    password: "{cipher}c89f83ff92cd2dce88c60dbcd680d848769b82530d03132b6890892953380033"
 
-default:
-  message: user-service 에서 global profiles 에서 사용할 설정 정보들
+  freemarker:
+    cache: false
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+
+  mail:
+    host: "{cipher}fcadb4a77603939d17476a4ff463eda409485f5ed6307830fad74681914ec40a"
+    port: 587
+    username: "{cipher}3d3e0db8154784474b2dc0aab5784f0f46a0d3f6630d7d058794df152a5ec16ea812b397b60c713d67e394af41018933"
+    password: "{cipher}39c37f8d582b65af74b06facb3842a8cd03b41e83cfc866534830dddfac1c98f617ff4c52389608bae698129e13e0b4f"
+
+
+spring.mail.properties.mail.smtp.auth: true
+spring.mail.properties.mail.smtp.starttls.enable: true
+
+eureka:
+  instance:
+    instance-id: user-microservice-instance
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+cloud:
+  aws:
+    s3:
+      bucket: "{cipher}4ae3c7e73f7edd59951ef9b3661b0efc7bf4aa6b8d6287561562baff265b245037a82a188f36788ee735de26abc5f29f"
+    credentials:
+      access-key: "{cipher}8ca945fa999db10cc537e1aa8724e5d16a52687a5b2a5660f776cb625046c1a2ae874742da6a3ca248ede170e68ef129"
+      secret-key: "{cipher}dfd7d4d975ba3c95911b4401f02317876d5763675b1f78cb7bb6e5478b27f2d39304963754bf7f4c5c6c9e11e9a4f1f8643405f73d6e25682e003c2e4690e478"
+    region:
+      static: "{cipher}506e1160653fcf2972815553e16d5b6ed51f0ea6f1d8bd995f48eea6237e608b"
+      auto: false
+    stack:
+      auto: false
+
+
+jwt:
+  secret: "{cipher}c7bdc9a73493b2a920a0a08a8a85773954f332b8b36ebea0a2149d7df0238f24792ad04d50e1af9626c6b9f5eead353ddeb26e4d6bcfa52cde84f959fe199985de259b823bb8d0aad6203382ff44d664b1adfba3429739e60c7dcd86f9da936b2a6f400917daf3f112e09c0ba0b272f58f3e83d7034aa1f021e9e8442d154bd6"
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: ERROR
+
+default_image: "{cipher}806089d9db77d5b9c463f2fcc075b11697ba54c4ad17576383a00908fa4cb0b34a5dcb831544cd027b211b5dc614e5384dd9de97620e2588d49ecfce6f969f791bc36c451224f1b130e6b8390dc4026e4e1e22856fbabde668b996c1ad21cb17"
+
+state-management-url : http://localhost:8090/state/
